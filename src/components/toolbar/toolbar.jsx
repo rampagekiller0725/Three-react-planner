@@ -89,14 +89,14 @@ export default class Toolbar extends Component {
           <FaFile />
         </ToolbarButton>
       },
-      // {
-      //   index: 1, condition: allowProjectFileSupport,
-      //   dom: <ToolbarSaveButton state={state} />
-      // },
-      // {
-      //   index: 2, condition: allowProjectFileSupport,
-      //   dom: <ToolbarLoadButton state={state} />
-      // },
+      {
+        index: 1, condition: allowProjectFileSupport,
+        dom: <ToolbarSaveButton state={state} />
+      },
+      {
+        index: 2, condition: allowProjectFileSupport,
+        dom: <ToolbarLoadButton state={state} />
+      },
       {
         index: 3, condition: true,
         dom: <ToolbarButton
@@ -122,30 +122,30 @@ export default class Toolbar extends Component {
           {[MODE_3D_FIRST_PERSON, MODE_3D_VIEW].includes(mode) ? <Icon2D style={{color: alterateColor}} /> : <FaMousePointer style={{color: alterateColor}} />}
         </ToolbarButton>
       },
-      // {
-      //   index: 6, condition: true, dom: <ToolbarButton
-      //     active={[MODE_3D_FIRST_PERSON].includes(mode)}
-      //     tooltip={translator.t('3D First Person')}
-      //     onClick={event => viewer3DActions.selectTool3DFirstPerson()}>
-      //     <MdDirectionsRun />
-      //   </ToolbarButton>
-      // },
-      // {
-      //   index: 7, condition: true, dom: <ToolbarButton
-      //     active={false}
-      //     tooltip={translator.t('Undo (CTRL-Z)')}
-      //     onClick={event => projectActions.undo()}>
-      //     <MdUndo />
-      //   </ToolbarButton>
-      // },
-      // {
-      //   index: 8, condition: true, dom: <ToolbarButton
-      //     active={[MODE_CONFIGURING_PROJECT].includes(mode)}
-      //     tooltip={translator.t('Configure project')}
-      //     onClick={event => projectActions.openProjectConfigurator()}>
-      //     <MdSettings />
-      //   </ToolbarButton>
-      // }
+      {
+        index: 6, condition: true, dom: <ToolbarButton
+          active={[MODE_3D_FIRST_PERSON].includes(mode)}
+          tooltip={translator.t('3D First Person')}
+          onClick={event => viewer3DActions.selectTool3DFirstPerson()}>
+          <MdDirectionsRun />
+        </ToolbarButton>
+      },
+      {
+        index: 7, condition: true, dom: <ToolbarButton
+          active={false}
+          tooltip={translator.t('Undo (CTRL-Z)')}
+          onClick={event => projectActions.undo()}>
+          <MdUndo />
+        </ToolbarButton>
+      },
+      {
+        index: 8, condition: true, dom: <ToolbarButton
+          active={[MODE_CONFIGURING_PROJECT].includes(mode)}
+          tooltip={translator.t('Configure project')}
+          onClick={event => projectActions.openProjectConfigurator()}>
+          <MdSettings />
+        </ToolbarButton>
+      }
     ];
 
     sorter = sorter.concat(toolbarButtons.map((Component, key) => {

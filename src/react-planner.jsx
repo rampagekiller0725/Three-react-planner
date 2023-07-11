@@ -17,12 +17,12 @@ import {VERSION} from './version';
 import './styles/export';
 
 const {Toolbar} = ToolbarComponents;
-// const {Sidebar} = SidebarComponents;
-// const {FooterBar} = FooterBarComponents;
+const {Sidebar} = SidebarComponents;
+const {FooterBar} = FooterBarComponents;
 
 const toolbarW = 50;
-// const sidebarW = 300;
-// const footerBarH= 20;
+const sidebarW = 300;
+const footerBarH= 20;
 
 const wrapperStyle = {
   display: 'flex',
@@ -42,7 +42,6 @@ class ReactPlanner extends Component {
   componentWillMount() {
     let {store} = this.context;
     let {projectActions, catalog, stateExtractor, plugins} = this.props;
-    console.log(catalog);
     plugins.forEach(plugin => plugin(store, stateExtractor));
     projectActions.initCatalog(catalog);
   }
@@ -59,10 +58,10 @@ class ReactPlanner extends Component {
   render() {
     let {width, height, state, stateExtractor, ...props} = this.props;
 
-    let contentW = width - toolbarW;
-    let toolbarH = height;
-    let contentH = height;
-    // let sidebarH = heights;
+    let contentW = width - toolbarW - sidebarW;
+    let toolbarH = height - footerBarH;
+    let contentH = height - footerBarH;
+    let sidebarH = height - footerBarH;
 
     let extractedState = stateExtractor(state);
 
@@ -70,8 +69,8 @@ class ReactPlanner extends Component {
       <div style={{...wrapperStyle, height}}>
         <Toolbar width={toolbarW} height={toolbarH} state={extractedState} {...props} />
         <Content width={contentW} height={contentH} state={extractedState} {...props} onWheel={event => event.preventDefault()} />
-        {/* <Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} /> */}
-        {/* <FooterBar width={width} height={footerBarH} state={extractedState} {...props} /> */}
+        <Sidebar width={sidebarW} height={sidebarH} state={extractedState} {...props} />
+        <FooterBar width={width} height={footerBarH} state={extractedState} {...props} />
       </div>
     );
   }
